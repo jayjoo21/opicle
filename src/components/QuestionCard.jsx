@@ -1,9 +1,8 @@
 import VocabHighlight from './VocabHighlight'
 
-const STEPS = ['read', 'hide', 'check']
-
 export default function QuestionCard({ question, step, onStepChange }) {
   const scriptVisible = step === 'read' || step === 'check'
+  const vocabPhrases = question.vocab.map((v) => v.phrase)
 
   return (
     <div className="flex flex-col gap-4">
@@ -30,7 +29,7 @@ export default function QuestionCard({ question, step, onStepChange }) {
           </div>
         ) : (
           <p className="text-gray-800 leading-8 text-base">
-            <VocabHighlight text={question.script} vocab={question.vocab} />
+            <VocabHighlight text={question.script} vocab={vocabPhrases} />
           </p>
         )}
       </div>
@@ -47,14 +46,17 @@ export default function QuestionCard({ question, step, onStepChange }) {
       {scriptVisible && (
         <div>
           <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2 px-1">Key Vocab</p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-col gap-2">
             {question.vocab.map((v) => (
-              <span
-                key={v}
-                className="bg-primary-50 text-primary-700 border border-primary-100 text-sm font-medium rounded-full px-3 py-1"
+              <div
+                key={v.phrase}
+                className="flex items-start gap-3 bg-white border border-gray-100 rounded-xl px-3 py-2.5"
               >
-                {v}
-              </span>
+                <span className="bg-primary-50 text-primary-700 border border-primary-100 text-xs font-semibold rounded-full px-2.5 py-1 flex-shrink-0 mt-0.5">
+                  {v.phrase}
+                </span>
+                <span className="text-gray-600 text-sm leading-relaxed">{v.meaning}</span>
+              </div>
             ))}
           </div>
         </div>

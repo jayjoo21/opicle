@@ -1133,3 +1133,12 @@ export const topics = [
     ],
   },
 ];
+
+export function getDailyTopic() {
+  const today = new Date()
+  const seed =
+    today.getFullYear() * 10000 +
+    (today.getMonth() + 1) * 100 +
+    today.getDate()
+  return topics[seed % topics.length]
+}

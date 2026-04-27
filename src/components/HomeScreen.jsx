@@ -1,8 +1,12 @@
 import { topics } from '../data/topics'
 
+function isRoleplay(topic) {
+  return topic.en.toLowerCase().includes('roleplay')
+}
+
 export default function HomeScreen({ dailyTopic, onStartPractice, onReroll }) {
-  const regularTopics = topics.filter((t) => !t.isRoleplay)
-  const roleplays = topics.filter((t) => t.isRoleplay)
+  const regularTopics = topics.filter((t) => !isRoleplay(t))
+  const roleplays = topics.filter((t) => isRoleplay(t))
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -30,14 +34,14 @@ export default function HomeScreen({ dailyTopic, onStartPractice, onReroll }) {
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="text-primary-100 text-xs font-semibold uppercase tracking-widest mb-1">
-                    {dailyTopic.nameEn}
-                    {dailyTopic.isRoleplay && (
+                    {dailyTopic.en}
+                    {isRoleplay(dailyTopic) && (
                       <span className="ml-2 bg-white/20 px-1.5 py-0.5 rounded text-white">
                         Role-play
                       </span>
                     )}
                   </p>
-                  <h2 className="text-white text-2xl font-bold leading-tight">{dailyTopic.name}</h2>
+                  <h2 className="text-white text-2xl font-bold leading-tight">{dailyTopic.ko}</h2>
                 </div>
                 <div className="bg-white/20 rounded-xl px-3 py-1.5 text-center flex-shrink-0">
                   <p className="text-white font-bold text-lg leading-none">{dailyTopic.questions.length}</p>
@@ -109,7 +113,7 @@ function TopicRow({ topic, isToday, onSelect }) {
     >
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-semibold text-gray-900 text-sm">{topic.name}</span>
+          <span className="font-semibold text-gray-900 text-sm">{topic.ko}</span>
           {isToday && (
             <span className="text-xs bg-primary-50 text-primary-600 font-semibold px-2 py-0.5 rounded-full border border-primary-100 flex-shrink-0">
               오늘
@@ -117,7 +121,7 @@ function TopicRow({ topic, isToday, onSelect }) {
           )}
         </div>
         <p className="text-xs text-gray-400 mt-0.5">
-          {topic.nameEn} · {topic.questions.length}문제
+          {topic.en} · {topic.questions.length}문제
         </p>
       </div>
       <svg className="text-gray-300 flex-shrink-0" width="16" height="16" viewBox="0 0 16 16" fill="none">

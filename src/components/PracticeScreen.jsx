@@ -47,8 +47,8 @@ export default function PracticeScreen({ topic, onBack }) {
             </svg>
           </button>
           <div className="flex-1 min-w-0">
-            <p className="text-xs text-gray-400 font-medium">{topic.nameEn}</p>
-            <h1 className="text-base font-bold text-gray-900 truncate">{topic.name}</h1>
+            <p className="text-xs text-gray-400 font-medium">{topic.en}</p>
+            <h1 className="text-base font-bold text-gray-900 truncate">{topic.ko}</h1>
           </div>
           <span className="text-sm font-semibold text-gray-400">
             {currentQ + 1} / {total}
@@ -81,7 +81,7 @@ export default function PracticeScreen({ topic, onBack }) {
             <div className="text-6xl">🎉</div>
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">오늘 주제 완료!</h2>
-              <p className="text-gray-500 text-sm">"{topic.name}" 스크립트를 모두 외웠어요.</p>
+              <p className="text-gray-500 text-sm">"{topic.ko}" 스크립트를 모두 외웠어요.</p>
             </div>
             <div className="flex flex-col gap-3 w-full">
               <button
